@@ -12,21 +12,24 @@ icc.de(prof1, prof2, input = c("cor", "score"), digits = 3)
 \item{prof2}{Vector of components of the nomological network of the second trait
 (input = "cor") or vector of components of the second profile (input = "score")}
 \item{digits}{Number of digits in the output of the function, DEFAULT = 3}
-\item{input}{Do the profiles contain correlations or individual scores on
-certain measures?}
+\item{input}{Do the profiles contain correlations (e.g., from construct
+validation) or test scores on different scales (e.g., from diverse personality
+tests)?}
 }
 
 \description{The function computes the profile similarity measure double-entry
 intraclass correlation. It is a more precise index of the agreement of two
 empirically observed profiles than the often used intraclass correlation or
-profile correlation. In the case of score data with different scale formats, it
-is recommended to z-standardize the scores before entering into the function.
-For details, see Furr (2010) <doi:10.1080/00223890903379134> or
-McCrae (2008) <doi:10.1080/00223890701845104>.
-}
+profile correlation. Profiles comprising correlations are transformed according
+to the Fisher z transformation before the index is calculated. In the case of
+score data with different scale formats (e.g., if the profile contains
+different IQ or a variety of personality tests), it is recommended to
+z-standardize the scores before entering into the function. For details, see
+Furr (2010) <doi:10.1080/00223890903379134> or McCrae (2008)
+<doi:10.1080/00223890701845104>.}
 
 \value{
-\item{ICC_DE}{Double-Entry Intraclass Correlation for two Given Profiles}
+\item{ICC_DE}{Double-Entry Intraclass Correlation for two given profiles}
 }
 
 \examples{
