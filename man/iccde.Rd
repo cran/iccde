@@ -3,7 +3,7 @@
 \alias{iccde}
 \title{Computation of Double-Entry Intraclass Correlation}
 \usage{
-icc.de(prof1, prof2, input = c("cor", "score"), digits = 3)
+icc.de(prof1, prof2, input = c("cor", "score"), digits = 2)
 }
 
 \arguments{
@@ -11,32 +11,38 @@ icc.de(prof1, prof2, input = c("cor", "score"), digits = 3)
 (input = "cor") or vector of components of the first profile (input = "score")}
 \item{prof2}{Vector of components of the nomological network of the second trait
 (input = "cor") or vector of components of the second profile (input = "score")}
-\item{digits}{Number of digits in the output of the function, DEFAULT = 3}
-\item{input}{Do the profiles contain correlations (e.g., from construct
-validation) or test scores on different scales (e.g., from diverse personality
-tests)?}
+\item{digits}{Number of digits in the output of the function, DEFAULT = 2}
+\item{input}{Do the profiles contain correlations (e.g., from nomological
+network; input = "cor") or scores from different scales (e.g., sum scores from
+diverse personality tests; input = "score")? Default is "cor"}
 }
 
-\description{The function computes the profile similarity measure double-entry
-intraclass correlation. It is a more precise index of the agreement of two
-empirically observed profiles than the often used intraclass correlation or
-profile correlation. Profiles comprising correlations are transformed according
-to the Fisher z transformation before the index is calculated. In the case of
-score data with different scale formats (e.g., if the profile contains
-different IQ or a variety of personality tests), it is recommended to
-z-standardize the scores before entering into the function. For details, see
-Furr (2010) <doi:10.1080/00223890903379134> or McCrae (2008)
-<doi:10.1080/00223890701845104>.}
+\description{
+The function computes the double-entry intraclass correlation,
+which is an index of profile similarity (Furr, 2010; McCrae, 2008).
+The double-entry intraclass correlation is a more precise index of the agreement
+of two empirically observed profiles than the often-used intraclass correlation
+(McCrae, 2008). The function transforms profiles comprising correlations
+according to the Fisher z-transformation before the double-entry intraclass
+correlation is calculated. If the profiles comprise scores such as sum scores
+from various personality scales, it is recommended to standardize each
+individual score before entering into the function (McCrae, 2008). In case of
+missing values, the function will automatically use pairwise deletion. For
+details, see Furr (2010) <doi:10.1080/00223890903379134> or McCrae (2008)
+<doi:10.1080/00223890701845104>.
+}
 
 \value{
-\item{ICC_DE}{Double-Entry Intraclass Correlation for two given profiles}
+\item{iccde}{Double-Entry Intraclass Correlation for two given profiles}
+\item{NAs_1}{Number of missings values in profile 1}
+\item{NAs_2}{Number of missing values in profile 2}
 }
 
 \examples{
 icc.de(prof1 = c(.59, .48, .23), prof2 = c(.52, .76, .22), input = "cor")
 
 icc.de(prof1 = c(59, 48, 23), prof2 = c(52, 76, 22), input = "score",
-digits = 2)
+digits = 4)
 }
 
 \author{
