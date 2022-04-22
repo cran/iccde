@@ -43,8 +43,8 @@ digits = 4)
 }
 
 \author{
-Christian Blötner, Michael Paul Grosz,
-\email{c.bloetner@gmail.com, grosz@wwu.de}}
+Christian Blötner, Michael Paul Grosz
+\email{c.bloetner@gmail.com}}
 \keyword{&htest}
 \references{
 Furr, R. M. (2010). The Double-Entry Intraclass Correlation as an Index of
