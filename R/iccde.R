@@ -1,6 +1,6 @@
 #' Computation of Double-Entry Intraclass Correlation
 #'
-#' Test for correlations
+#' Test for correlations or test scores
 #'
 #' @param prof1 Vector of components of the correlation profile of the
 #' first trait (input = "cor") or vector of components of the first profile

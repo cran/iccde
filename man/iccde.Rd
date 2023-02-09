@@ -1,7 +1,7 @@
 \name{iccde}
 \alias{icc.de}
-\alias{iccde}
-\title{Computation of the Double-Entry Intraclass Correlation}
+\title{Computation of the Double-Entry Intraclass Correlation between two
+profiles}
 \usage{
 icc.de(prof1, prof2, input = c("cor", "score"), digits = 2)
 }
@@ -26,8 +26,8 @@ of two empirically observed profiles than the often-used intraclass correlation
 according to the Fisher z-transformation before the double-entry intraclass
 correlation is calculated. If the profiles comprise scores such as sum scores
 from various personality scales, it is recommended to standardize each
-individual score before entering into the function (McCrae, 2008). See
-Furr (2010) <doi:10.1080/00223890903379134> or
+individual score prior to computation of the double-entry intraclass correlation
+(McCrae, 2008). See Furr (2010) <doi:10.1080/00223890903379134> or
 McCrae (2008) <doi:10.1080/00223890701845104> for details.
 }
 
