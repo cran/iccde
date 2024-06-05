@@ -1,2 +1,2 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("stats", "cor")
+importFrom("graphics", "abline", "hist", "par")importFrom("stats", "cor", "median", "qqnorm", "quantile", "rnorm", "sd")

@@ -2,30 +2,33 @@
 #'
 #' Test for matrices comprising of correlations
 #'
-#' @param dat A symmetric c x c correlation matrix. It can be easily computed
-#' with the basic R function 'cor(data)'. Assymetric matrices with different
-#' numbers of columns and rows are not supported.
+#' @param data A data frame with participants in rows and variables in columns.
+#' @param digit Number of digits in the output. The default is 3.
+#'
 #' @return A matrix of double-entry intraclass correlations in which redundant
 #' entries are removed.
 #' @export
 #'
 #' @examples
 #' df <- data.frame(a = rnorm(100), b = rnorm(100), c = rnorm(100),
-#' x = rnorm(100), y = rnorm(100), z = rnorm(100))
-#' dat <- cor(df)
-#' icc.de.mat(dat)
+#'                  x = rnorm(100), y = rnorm(100), z = rnorm(100))
+#' icc.de.mat(df)
 
-icc.de.mat <- function(dat){
-  r <- matrix(0, nrow = ncol(dat), ncol = ncol(dat))
+icc.de.mat <- function(data, digit = 3){
 
-  for (i in 1:ncol(dat)) {
-    for (j in 1:ncol(dat)) {
-      r[i, j] <- icc.de(dat[-c(i, j), i], dat[-c(i, j), j])
-      if(i <= j){r[i, j] <- ""}
+  mat <- cor(data)
+
+  r <- matrix(0, nrow = ncol(mat), ncol = ncol(mat))
+
+  for (i in 1:ncol(mat)) {
+    for (j in 1:ncol(mat)) {
+      r[i, j] <- icc.de(mat[-c(i, j), i], mat[-c(i, j), j],
+                        digits = digit)
     }
   }
-  colnames(r) <- colnames(dat)
-  rownames(r) <- rownames(dat)
+
+  colnames(r) <- colnames(mat)
+  rownames(r) <- rownames(mat)
 
   return(r)
 }

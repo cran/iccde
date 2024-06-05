@@ -3,33 +3,29 @@
 \title{Computation of Double-Entry Intraclass Correlations for correlation
 matrices}
 \usage{
-icc.de.mat(dat)
+icc.de.mat(data, digit)
 }
 
 \arguments{
-\item{dat}{A symmetric c x c correlation matrix. It can be easily computed with
-the basic R function 'cor()'. Assymetric matrices with different numbers of
-columns and rows are not supported.}
+\item{data}{A data frame with participants in rows and variables in columns.}
+\item{digit}{Number of digits in the output. The default is 3.}
 }
 
 \description{
 This function computes pairwise double-entry intraclass correlations among
-all entries of a symmetric correlation matrix. Correlations between the compared
-variables as well as correlations of the constructs with themselves are thereby
-excluded (i.e., correlations between X and Y, correlation between X and X, and
-between correlation between Y and Y).}
+all entries of a data frame. Correlations between the compared variables as well
+as correlations of the constructs with themselves are thereby excluded from the
+calculation (i.e., correlations between X and Y, correlation between X and X,
+and correlation between Y and Y).}
 
 \value{
 \item{iccde}{Double-Entry Intraclass Correlation}}
 
 \examples{
-\dontrun{
 
 df <- data.frame(a = rnorm(100), b = rnorm(100), c = rnorm(100),
                  x = rnorm(100), y = rnorm(100), z = rnorm(100))
-dat <- cor(df)
-icc.de.mat(dat)
-}
+icc.de.mat(df)
 }
 
 \author{
