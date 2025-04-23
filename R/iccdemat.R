@@ -14,9 +14,11 @@
 #'                  x = rnorm(100), y = rnorm(100), z = rnorm(100))
 #' icc.de.mat(df)
 
-icc.de.mat <- function(data, digit = 3){
+icc.de.mat <- function(data,
+                       use = "pairwise",
+                       digit = 3){
 
-  mat <- cor(data)
+  mat <- cor(data, use = use)
 
   r <- matrix(0, nrow = ncol(mat), ncol = ncol(mat))
 

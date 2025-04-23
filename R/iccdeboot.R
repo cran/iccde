@@ -32,6 +32,7 @@
 icc.de.boot <- function(data,
                         n.sim = 1000,
                         alpha = .05,
+                        use = "pairwise",
                         digit = 3){
 
   array <- array(0, dim = c(ncol(data),
@@ -41,7 +42,8 @@ icc.de.boot <- function(data,
   for(m in 1:n.sim){
     index <- sample(1:nrow(data), replace = TRUE)
 
-    cormat <- cor(data[index, ])
+    cormat <- cor(data[index, ],
+                  use = use)
 
     r <- matrix(0, nrow = ncol(cormat), ncol = ncol(cormat))
     for (i in 1:nrow(cormat)){
@@ -59,14 +61,19 @@ icc.de.boot <- function(data,
 
   dimnames(array) <- list(colnames(r), colnames(r), 1:n.sim)
 
-  out <- list(Mean = round(apply(array, c(1, 2), mean), digit),
+  out <- list(Mean = round(apply(array, c(1, 2),
+                                 function(x) mean(x,
+                                                  na.rm = TRUE)),
+                           digit),
               LL = round(apply(array, c(1, 2),
                                function(x) quantile(x,
-                                                    probs = (alpha / 2))),
+                                                    probs = (alpha / 2),
+                                                    na.rm = TRUE)),
                          digit),
               UL = round(apply(array, c(1, 2),
                                function(x) quantile(x,
-                                                    probs = 1 - (alpha / 2))),
+                                                    probs = 1 - (alpha / 2),
+                                                    na.rm = TRUE)),
                          digit))
 
   return(out)

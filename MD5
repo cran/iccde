@@ -1,8 +1,8 @@
-adf2f5faa5c0924f71f7837ec2c21d87 *DESCRIPTION
+34be12a95987c6adbc2cdf7cdd0ce7f8 *DESCRIPTION
 f942354ecd85bb9d76916ae3bc6c2bf3 *NAMESPACE
-fc6158c3809965c0983cc88a7882ed55 *R/iccde.R
-5476d5b4020c42adcbdb4e5bc5d05238 *R/iccdeboot.R
-ac1542df86b20082c269694632bdf1d7 *R/iccdemat.R
-2aca1a5cb4517b66f0a400d917b70ccb *man/iccde.Rd
-b7b218b58f792013d5ce24fbe0bce1b8 *man/iccdeboot.Rd
-1fc529606fef5083cdace1aef9b228fd *man/iccdemat.Rd
+e68f14d431e302518f3b4e4a4d60f2a2 *R/iccde.R
+b0bd5ae8dc8728d45b3ea7a0a277ff63 *R/iccdeboot.R
+051c40ca0a8b55fe45d8137a13793f96 *R/iccdemat.R
+2186ad445df1e9a94a9a1b0be8eb3aa6 *man/iccde.Rd
+0a59c0cd3a89b4f2808460fb5f2d9d26 *man/iccdeboot.Rd
+0a3ff4e0a3f16f20fcb8a499437a7d1b *man/iccdemat.Rd

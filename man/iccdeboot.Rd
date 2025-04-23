@@ -7,7 +7,7 @@ entry intraclass correlation can be useful. Bootstrap confidence intervals are
 computed by means of repeated resampling from the original data at hand.
 }
 \usage{
-icc.de.boot(data, n.sim = 1000, alpha = .05, digit = 3)
+icc.de.boot(data, n.sim = 1000, alpha = .05, use = "pairwise", digit = 3)
 }
 
 \arguments{
@@ -21,6 +21,11 @@ device (i5 CPU, 8 GB RAM) and a Macbook Pro (M3 Pro CPU, 36 GB RAM), for
 instance, took about two minutes, given 1,000 iterations.}
 \item{n.sim}{The number of iterations to be carried out. Default is 1,000.}
 \item{alpha}{Type I error. Default is .05.}
+\item{use}{Optional character string specifying how to deal with missing values.
+The input will be forwarded to the base \code{cor} function and can be one of
+the following strings, including abbreviation: "everything", "all.obs",
+"complete.obs", "na.or.complete", or "pairwise.complete.obs". The default is
+\code{use = "pairwise"}.}
 \item{digit}{Number of digits in the output. Default is 3.}
 }
 

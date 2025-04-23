@@ -3,11 +3,16 @@
 \title{Computation of Double-Entry Intraclass Correlations for correlation
 matrices}
 \usage{
-icc.de.mat(data, digit)
+icc.de.mat(data, use = "pairwise", digit)
 }
 
 \arguments{
 \item{data}{A data frame with participants in rows and variables in columns.}
+\item{use}{Optional character string specifying how to deal with missing values.
+The input will be forwarded to the base \code{cor} function and can be one of
+the following strings, including abbreviation: "everything", "all.obs",
+"complete.obs", "na.or.complete", or "pairwise.complete.obs". The default is
+\code{use = "pairwise"}.}
 \item{digit}{Number of digits in the output. The default is 3.}
 }
 
@@ -18,8 +23,8 @@ as correlations of the constructs with themselves are thereby excluded from the
 calculation (i.e., correlations between X and Y, correlation between X and X,
 and correlation between Y and Y).}
 
-\value{
-\item{iccde}{Double-Entry Intraclass Correlation}}
+\value{A matrix of double-entry intraclass correlations among the entered
+variables.}
 
 \examples{
 

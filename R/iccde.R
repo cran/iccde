@@ -3,10 +3,10 @@
 #' Test for correlations or test scores
 #'
 #' @param prof1 Vector of components of the correlation profile of the
-#' first trait (input = "cor") or vector of components of the first profile
+#' first variable (input = "cor") or vector of components of the first profile
 #' comprising test scores (input = "score")
 #' @param prof2 Vector of components of the correlation profile of the
-#' second trait (input = "cor") or vector of components of the second profile
+#' second variable (input = "cor") or vector of components of the second profile
 #' comprising test scores (input = "score")
 #' @param input Defines which kind of data are entered into the function:
 #' Correlations ("cor", DEFAULT) or individual test scores ("score")
@@ -21,7 +21,11 @@
 #' icc.de(prof1 = c(-1, -0.85, 2), prof2 = c(-0.93, 1, 1.26), input = "score",
 #' digits = 4)
 
-icc.de <- function(prof1, prof2, input = c("cor", "score"), digits = 2){
+icc.de <- function(prof1,
+                   prof2,
+                   input = c("cor", "score"),
+                   use = "pairwise",
+                   digits = 2){
 
   if(length(prof1) != length(prof2)){
     warning("The profiles have different lengths. Please double-check!")}
@@ -41,6 +45,6 @@ icc.de <- function(prof1, prof2, input = c("cor", "score"), digits = 2){
     yx <- c(prof2, rev(prof1))
     }
 
-  iccde <- round(cor(xy, yx), digits);
+  iccde <- round(cor(xy, yx, use = use), digits);
   return(iccde)
 }
