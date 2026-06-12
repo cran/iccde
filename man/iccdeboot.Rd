@@ -7,7 +7,11 @@ entry intraclass correlation can be useful. Bootstrap confidence intervals are
 computed by means of repeated resampling from the original data at hand.
 }
 \usage{
-icc.de.boot(data, n.sim = 1000, alpha = .05, use = "pairwise", digit = 3)
+icc.de.boot(data,
+            n.sim = 1000,
+            alpha = .05,
+            use = "pairwise",
+            digit = 3)
 }
 
 \arguments{
@@ -16,9 +20,7 @@ Users should restrict the data set to the variables of concrete interest
 because the all available information in the data frame will be used to
 compute bootstrapped confidence intervals. Thus, it is advisable to create a
 new data frame that entails only the variables on which the matrix of ICCDEs
-should be based. Computations in a data set with 56 variables on a Windows
-device (i5 CPU, 8 GB RAM) and a Macbook Pro (M3 Pro CPU, 36 GB RAM), for
-instance, took about two minutes, given 1,000 iterations.}
+should be based.}
 \item{n.sim}{The number of iterations to be carried out. Default is 1,000.}
 \item{alpha}{Type I error. Default is .05.}
 \item{use}{Optional character string specifying how to deal with missing values.
@@ -29,14 +31,17 @@ the following strings, including abbreviation: "everything", "all.obs",
 \item{digit}{Number of digits in the output. Default is 3.}
 }
 
-\value{The output provides a list of matrices of double-entry intraclass
-correlations.
-\item{Mean}{A matrix of the bootstrapped point estimates of the bootstrapped
+\value{The output provides a list with the following elements.
+\item{M}{A matrix of the bootstrapped point estimates of the bootstrapped
 double-entry intraclass correlations.}
 \item{LL}{A matrix providing the lower limits of the bootstrap confidence
 intervals, given the desired alpha level.}
 \item{UL}{A matrix providing the upper limits of the bootstrap confidence
 intervals, given the selected alpha level.}
+\item{Mean}{A vector of the mean correlation per row of the raw correlation
+matrix (i.e., not bootstrapped), excluding the diagonal element.}
+\item{SD}{A vector of the standard deviations of the correlations per row of the
+raw correlation matrix (i.e., not bootstrapped), excluding the diagonal element.}
 }
 
 \author{
@@ -58,7 +63,7 @@ Personality Assessment, 90(2), 105--109.
 df <- data.frame(a = rnorm(100), b = rnorm(100), c = rnorm(100),
                  x = rnorm(100), y = rnorm(100), z = rnorm(100))
 icc.de.boot(data = df,
-            n.sim = 1000,
+            n.sim = 10, # just for illustration. Use higher n.sim in real data
             alpha = .01,
             digit = 2)
 }

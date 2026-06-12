@@ -23,8 +23,14 @@ as correlations of the constructs with themselves are thereby excluded from the
 calculation (i.e., correlations between X and Y, correlation between X and X,
 and correlation between Y and Y).}
 
-\value{A matrix of double-entry intraclass correlations among the entered
+\value{The output contains a list with the following elements.
+\item{iccde}{A matrix of double-entry intraclass correlations among the entered
 variables.}
+\item{Mean}{A vector of the mean correlation per row of the correlation matrix,
+excluding the diagonal element.}
+\item{SD}{A vector of the standard deviations of the correlations per row of the
+correlation matrix, excluding the diagonal element.}
+}
 
 \examples{
 

@@ -1,2 +1,3 @@
 exportPattern("^[[:alpha:]]+")
 importFrom("graphics", "abline", "hist", "par")importFrom("stats", "cor", "median", "qqnorm", "quantile", "rnorm", "sd")
+importFrom("graphics", "axis", "lines")

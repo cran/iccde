@@ -3,7 +3,17 @@
 \title{Computation of the Double-Entry Intraclass Correlation between two
 profiles}
 \usage{
-icc.de(prof1, prof2, input = c("cor", "score"), use = "pairwise", digits = 2)
+icc.de(prof1,
+       prof2,
+       input = c("cor", "score"),
+       use = "pairwise",
+       digits = 2,
+       plot = TRUE,
+       legend = TRUE,
+       pos.legend = "topleft",
+       main = NA,
+       name_prof1 = "prof1",
+       name_prof2 = "prof2")
 }
 
 \arguments{
@@ -23,6 +33,17 @@ the following strings, including abbreviation: "everything", "all.obs",
 "complete.obs", "na.or.complete", or "pairwise.complete.obs". The default is
 \code{use = "pairwise"}.}
 \item{digits}{Number of digits in the output. The default is digits = 2.}
+\item{plot}{Optional. Should the trajectories be visualized?}
+\item{legend}{Optional. Should a legend be added to the plot?}
+\item{pos.legend}{Optional. If \code{legend = TRUE}, the position of the
+legend can be specified. The edible default is \code{pos.legend = "topleft"}.
+Alternative positions are "bottomright", "bottom", "bottomleft", "left", "top",
+"topright", "right", and "center".}
+\item{main}{Optional. Header/title of the optional plot.}
+\item{name_prof1}{Optional. Alternative name to be displayed in the output for
+\code{prof1}.}
+\item{name_prof2}{Optional. Alternative name to be displayed in the output for
+\code{prof2}.}
 }
 
 \description{
@@ -40,13 +61,22 @@ McCrae (2008) <doi:10.1080/00223890701845104> for details.
 }
 
 \value{
-\item{iccde}{Double-Entry Intraclass Correlation for two given profiles}}
+\item{iccde}{Double-Entry Intraclass Correlation for two given profiles}
+\item{Mean_prof1, Mean_prof2}{Means of the coefficients entered as \code{prof1}
+and \code{prof2}, respectively.}
+\item{SD_prof1, SD_prof2}{Standard deviation of the coefficients entered as
+\code{prof1} and \code{prof2}, respectively.}
+}
 
 \examples{
-icc.de(prof1 = c(.59, .48, .23), prof2 = c(.52, .76, .22), input = "cor")
+icc.de(prof1 = c(.59, .48, .23),
+       prof2 = c(.52, .76, .22),
+       input = "cor")
 
-icc.de(prof1 = c(-1, -0.85, 2), prof2 = c(-0.93, 1, 1.26), input = "score",
-digits = 4)
+icc.de(prof1 = c(-1, -0.85, 2),
+       prof2 = c(-0.93, 1, 1.26),
+       input = "score",
+       digits = 4)
 }
 
 \author{

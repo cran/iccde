@@ -18,19 +18,45 @@ icc.de.mat <- function(data,
                        use = "pairwise",
                        digit = 3){
 
-  mat <- cor(data, use = use)
+  mat <- cor(data,
+             use = use)
 
-  r <- matrix(0, nrow = ncol(mat), ncol = ncol(mat))
+  m <- rep(NA,
+           nrow(mat))
 
-  for (i in 1:ncol(mat)) {
-    for (j in 1:ncol(mat)) {
-      r[i, j] <- icc.de(mat[-c(i, j), i], mat[-c(i, j), j],
-                        digits = digit)
+  sd <- rep(NA,
+            nrow(mat))
+
+  r <- matrix(0,
+              nrow = ncol(mat),
+              ncol = ncol(mat))
+
+  for(i in 1:nrow(mat)){
+    for(j in 1:ncol(mat)){
+
+      r[i, j] <- icc.de(mat[-c(i, j), i],
+                        mat[-c(i, j), j],
+                        digits = digit,
+                        plot = FALSE)$iccde
     }
   }
 
   colnames(r) <- colnames(mat)
   rownames(r) <- rownames(mat)
 
-  return(r)
+  for(i in 1:nrow(mat)){
+
+    m[i] <- tanh(mean(atanh(mat[i, -i])))
+
+    sd[i] <- tanh(sd(atanh(mat[i, -i])))
+
+  }
+
+  out <- list(iccde = r,
+              Mean = round(m,
+                           digit),
+              SD = round(sd,
+                         digit))
+
+  return(out)
 }

@@ -35,45 +35,80 @@ icc.de.boot <- function(data,
                         use = "pairwise",
                         digit = 3){
 
-  array <- array(0, dim = c(ncol(data),
-                            ncol(data),
-                            n.sim))
+  mat <- cor(data,
+             use = use)
+
+  m <- rep(NA,
+           nrow(mat))
+
+  sd <- rep(NA,
+            nrow(mat))
+
+  array <- array(0,
+                 dim = c(ncol(data),
+                         ncol(data),
+                         n.sim))
 
   for(m in 1:n.sim){
-    index <- sample(1:nrow(data), replace = TRUE)
+    index <- sample(1:nrow(data),
+                    replace = TRUE)
 
     cormat <- cor(data[index, ],
                   use = use)
 
-    r <- matrix(0, nrow = ncol(cormat), ncol = ncol(cormat))
-    for (i in 1:nrow(cormat)){
-      for (j in 1:ncol(cormat)){
-        r[i, j] <- icc.de(cormat[-c(i, j), i], cormat[-c(i, j), j],
-                          digits = digit)
+    r <- matrix(0,
+                nrow = nrow(cormat),
+                ncol = ncol(cormat))
+
+    for(i in 1:nrow(cormat)){
+      for(j in 1:ncol(cormat)){
+
+        r[i, j] <- icc.de(prof1 = cormat[-c(i, j), i],
+                          prof2 = cormat[-c(i, j), j],
+                          plot = FALSE)$iccde
       }
     }
 
     colnames(r) <- colnames(data)
     rownames(r) <- colnames(data)
 
-    array[1:nrow(cormat), 1:ncol(cormat), m] <- r
+    array[1:nrow(cormat),
+          1:ncol(cormat),
+          m] <- r
   }
 
-  dimnames(array) <- list(colnames(r), colnames(r), 1:n.sim)
+  dimnames(array) <- list(colnames(r),
+                          colnames(r),
+                          1:n.sim)
 
-  out <- list(Mean = round(apply(array, c(1, 2),
-                                 function(x) mean(x,
-                                                  na.rm = TRUE)),
-                           digit),
-              LL = round(apply(array, c(1, 2),
+  for(i in 1:nrow(mat)){
+
+    m[i] <- tanh(mean(atanh(mat[i, -i])))
+
+    sd[i] <- tanh(sd(atanh(mat[i, -i])))
+
+  }
+
+  out <- list(M = round(apply(array,
+                              c(1, 2),
+                              function(x) mean(x,
+                                               na.rm = TRUE)),
+                        digit),
+              LL = round(apply(array,
+                               c(1, 2),
                                function(x) quantile(x,
                                                     probs = (alpha / 2),
                                                     na.rm = TRUE)),
                          digit),
-              UL = round(apply(array, c(1, 2),
+              UL = round(apply(array,
+                               c(1, 2),
                                function(x) quantile(x,
                                                     probs = 1 - (alpha / 2),
                                                     na.rm = TRUE)),
+                         digit),
+              Mean = round(m,
+                           digit),
+              SD = round(sd,
                          digit))
 
   return(out)
